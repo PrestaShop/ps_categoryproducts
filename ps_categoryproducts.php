@@ -139,7 +139,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $fields_form = array(
             'form' => array(
                 'legend' => array(
-                    'title' => $this->trans('Settings', array(), 'Admin.Actions'),
+                    'title' => $this->trans('Settings', array(), 'Admin.Global'),
                     'icon' => 'icon-cogs',
                 ),
                 'input' => array(
@@ -152,12 +152,12 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
                             array(
                                 'id' => 'active_on',
                                 'value' => 1,
-                                'label' => $this->trans('Enabled', array(), 'Admin.Actions'),
+                                'label' => $this->trans('Enabled', array(), 'Admin.Global'),
                             ),
                             array(
                                 'id' => 'active_off',
                                 'value' => 0,
-                                'label' => $this->trans('Disabled', array(), 'Admin.Actions'),
+                                'label' => $this->trans('Disabled', array(), 'Admin.Global'),
                             )
                         ),
                     ),
