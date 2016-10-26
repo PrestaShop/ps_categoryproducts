@@ -213,9 +213,15 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $params = $this->getInformationFromConfiguration($configuration);
 
         if ($params) {
-            return array(
-                'products' => $this->getCategoryProducts($params['id_product'], $params['id_category']),
-            );
+
+            $products = $this->getCategoryProducts($params['id_product'], $params['id_category']);
+
+            if (!empty($products)) {
+                return array(
+                    'products' => $products,
+                );
+            }
+
         }
 
         return false;
@@ -238,7 +244,13 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
                         return false;
                     }
 
-                    $this->smarty->assign($this->getWidgetVariables($hookName, $configuration));
+                    $variables = $this->getWidgetVariables($hookName, $configuration);
+
+                    if (empty($variables)) {
+                        return false;
+                    }
+
+                    $this->smarty->assign($variables);
                 }
 
                 return $this->fetch(
