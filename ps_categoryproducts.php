@@ -331,7 +331,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         }
 
         $product = $configuration['product'];
-        if (is_object($product)) {
+        if ($product instanceof Product) {
             $product = (array) $product;
             $product['id_product'] = $product['id'];
         }
