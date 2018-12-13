@@ -346,7 +346,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             return array(
                 'id_product' => $id_product,
                 'id_category' => $id_category,
-                'cache_id' => $cache_id,
+                'cache_id' => $this->getCacheId($cache_id),
             );
         }
 
