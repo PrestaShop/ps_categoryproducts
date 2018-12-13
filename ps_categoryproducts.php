@@ -48,7 +48,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
     {
         $this->name = 'ps_categoryproducts';
         $this->author = 'PrestaShop';
-        $this->version = '1.0.3';
+        $this->version = '1.0.4';
 
         $this->bootstrap = true;
         parent::__construct();
