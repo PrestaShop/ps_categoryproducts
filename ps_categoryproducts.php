@@ -48,7 +48,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
     {
         $this->name = 'ps_categoryproducts';
         $this->author = 'PrestaShop';
-        $this->version = '1.0.3';
+        $this->version = '1.0.4';
 
         $this->bootstrap = true;
         parent::__construct();
@@ -346,7 +346,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             return array(
                 'id_product' => $id_product,
                 'id_category' => $id_category,
-                'cache_id' => $cache_id,
+                'cache_id' => $this->getCacheId($cache_id),
             );
         }
 
