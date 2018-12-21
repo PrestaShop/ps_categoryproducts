@@ -79,6 +79,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             ! Configuration::deleteByName('CATEGORYPRODUCTS_DISPLAY_PRODUCTS')) {
             return false;
         }
+
         return true;
     }
 
