@@ -281,8 +281,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
 
         $query
             ->setResultsPerPage($nProducts)
-            ->setPage(1)
-        ;
+            ->setPage(1);
 
         $query->setSortOrder(SortOrder::random());
 
