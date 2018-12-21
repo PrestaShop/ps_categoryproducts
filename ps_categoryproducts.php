@@ -25,7 +25,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 */
 
-if (!defined('_PS_VERSION_')) {
+if ( ! defined('_PS_VERSION_')) {
     exit;
 }
 
@@ -74,9 +74,9 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
 
     public function uninstall()
     {
-        if (!parent::uninstall() ||
-            !Configuration::deleteByName('CATEGORYPRODUCTS_DISPLAY_PRICE') ||
-            !Configuration::deleteByName('CATEGORYPRODUCTS_DISPLAY_PRODUCTS')) {
+        if ( ! parent::uninstall() ||
+            ! Configuration::deleteByName('CATEGORYPRODUCTS_DISPLAY_PRICE') ||
+            ! Configuration::deleteByName('CATEGORYPRODUCTS_DISPLAY_PRODUCTS')) {
             return false;
         }
         return true;
@@ -216,7 +216,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
 
             $products = $this->getCategoryProducts($params['id_product'], $params['id_category']);
 
-            if (!empty($products)) {
+            if ( ! empty($products)) {
                 return [
                     'products' => $products,
                 ];
@@ -235,12 +235,12 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             if ((int)Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS') > 0) {
 
                 // Need variables only if this template isn't cached
-                if (!$this->isCached($this->templateFile, $params['cache_id'])) {
-                    if (!empty($params['id_category'])) {
+                if ( ! $this->isCached($this->templateFile, $params['cache_id'])) {
+                    if ( ! empty($params['id_category'])) {
                         $category = new Category($params['id_category']);
                     }
 
-                    if (empty($category) || !Validate::isLoadedObject($category) || !$category->active) {
+                    if (empty($category) || ! Validate::isLoadedObject($category) || ! $category->active) {
                         return false;
                     }
 
@@ -338,7 +338,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $id_product = $product['id_product'];
         $id_category = (isset($configuration['category']->id) ? (int) $configuration['category']->id : (int) $product['id_category_default']);
 
-        if (!empty($id_product) && !empty($id_category)) {
+        if ( ! empty($id_product) && ! empty($id_category)) {
 
             $cache_id = 'ps_categoryproducts|'.$id_product.'|'.$id_category;
 
