@@ -42,6 +42,7 @@ use PrestaShop\PrestaShop\Core\Product\Search\SortOrder;
 class Ps_Categoryproducts extends Module implements WidgetInterface
 {
     protected $html;
+
     protected $templateFile;
 
     public function __construct()
