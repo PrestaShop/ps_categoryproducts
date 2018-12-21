@@ -174,7 +174,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             ],
         ];
 
-        $lang = new Language((int)Configuration::get('PS_LANG_DEFAULT'));
+        $lang = new Language((int) Configuration::get('PS_LANG_DEFAULT'));
 
         $helper = new HelperForm();
         $helper->show_toolbar = false;
@@ -229,7 +229,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $params = $this->getInformationFromConfiguration($configuration);
 
         if ($params) {
-            if ((int)Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS') > 0) {
+            if ((int) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS') > 0) {
 
                 // Need variables only if this template isn't cached
                 if ( ! $this->isCached($this->templateFile, $params['cache_id'])) {
