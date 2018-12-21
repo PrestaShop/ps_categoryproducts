@@ -131,7 +131,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             $this->_clearCache($this->templateFile);
         }
 
-        
     }
 
     public function renderForm()
