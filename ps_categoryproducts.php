@@ -189,7 +189,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $helper->currentIndex = $this->context->link->getAdminLink(
                 'AdminModules',
                 false
-            ).'&configure='.$this->name.'&tab_module='.$this->tab.'&module_name='.$this->name;
+            ) . '&configure=' . $this->name . '&tab_module=' . $this->tab . '&module_name=' . $this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
         $helper->tpl_vars = array(
             'fields_value' => $this->getConfigFieldsValues(),
@@ -341,7 +341,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
 
         if (!empty($id_product) && !empty($id_category)) {
 
-            $cache_id = 'ps_categoryproducts|'.$id_product.'|'.$id_category;
+            $cache_id = 'ps_categoryproducts|' . $id_product . '|' . $id_category;
 
             return array(
                 'id_product' => $id_product,
