@@ -158,7 +158,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
                                 'id' => 'active_off',
                                 'value' => 0,
                                 'label' => $this->trans('Disabled', array(), 'Admin.Global'),
-                            )
+                            ),
                         ),
                     ),
                     array(
@@ -194,7 +194,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $helper->tpl_vars = array(
             'fields_value' => $this->getConfigFieldsValues(),
             'languages' => $this->context->controller->getLanguages(),
-            'id_language' => $this->context->language->id
+            'id_language' => $this->context->language->id,
         );
 
         return $helper->generateForm(array($fields_form));
