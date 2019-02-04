@@ -215,7 +215,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $params = $this->getInformationFromConfiguration($configuration);
 
         if ($params) {
-
             $products = $this->getCategoryProducts($params['id_product'], $params['id_category']);
 
             if (!empty($products)) {
@@ -223,7 +222,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
                     'products' => $products,
                 );
             }
-
         }
 
         return false;
@@ -235,7 +233,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
 
         if ($params) {
             if ((int)Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS') > 0) {
-
                 // Need variables only if this template isn't cached
                 if (!$this->isCached($this->templateFile, $params['cache_id'])) {
                     if (!empty($params['id_category'])) {
@@ -342,7 +339,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $id_category = (isset($configuration['category']->id) ? (int) $configuration['category']->id : (int) $product['id_category_default']);
 
         if (!empty($id_product) && !empty($id_category)) {
-
             $cache_id = 'ps_categoryproducts|'.$id_product.'|'.$id_category;
 
             return array(
