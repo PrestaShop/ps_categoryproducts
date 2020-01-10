@@ -2,7 +2,7 @@
   "name": "prestashop/ps_categoryproducts",
   "description": "PrestaShop module ps_categoryproducts",
   "homepage": "https://github.com/PrestaShop/ps_categoryproducts",
-  "license": "AFL - Academic Free License (AFL 3.0)",
+  "license": "AFL-3.0",
   "authors": [
     {
       "name": "PrestaShop SA",
