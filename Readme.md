@@ -2,7 +2,7 @@
 
 ## About
 
-Adds a block on the product page that displays products from the same category.
+Add a block on every product page that displays items from the same category.
 
 ## Multistore compatibility
 
