@@ -203,8 +203,8 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
     public function getConfigFieldsValues()
     {
         return array(
-            'CATEGORYPRODUCTS_DISPLAY_PRICE' => Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRICE'),
-            'CATEGORYPRODUCTS_DISPLAY_PRODUCTS' => Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS'),
+            'CATEGORYPRODUCTS_DISPLAY_PRICE' => Tools::getValue('CATEGORYPRODUCTS_DISPLAY_PRICE', (bool) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRICE')),
+            'CATEGORYPRODUCTS_DISPLAY_PRODUCTS' => Tools::getValue('CATEGORYPRODUCTS_DISPLAY_PRODUCTS', (int) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS')),
         );
     }
 
