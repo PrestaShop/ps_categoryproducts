@@ -92,7 +92,13 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
                 $this->html .= $this->displayError($this->trans('Invalid value for display price.', array(), 'Modules.Categoryproducts.Admin'));
             }
 
-            if ($isValidDisplayPrice) {
+            $nbr = Tools::getValue('CATEGORYPRODUCTS_DISPLAY_PRODUCTS');
+            $isValidDisplayProducts = Validate::isInt($nbr) && $nbr > 0;
+            if (false === $isValidDisplayProducts) {
+                $this->html .= $this->displayError($this->trans('The number of products is invalid. Please enter a positive number.', array(), 'Modules.Categoryproducts.Admin'));
+            }
+
+            if ($isValidDisplayPrice && $isValidDisplayProducts) {
                 Configuration::updateValue('CATEGORYPRODUCTS_DISPLAY_PRICE', Tools::getValue('CATEGORYPRODUCTS_DISPLAY_PRICE'));
                 Configuration::updateValue('CATEGORYPRODUCTS_DISPLAY_PRODUCTS', (int) Tools::getValue('CATEGORYPRODUCTS_DISPLAY_PRODUCTS'));
 
