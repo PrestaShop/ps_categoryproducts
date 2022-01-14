@@ -47,6 +47,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
     public function __construct()
     {
         $this->name = 'ps_categoryproducts';
+        $this->tab = 'pricing_promotion';
         $this->author = 'PrestaShop';
         $this->version = '1.0.4';
 
