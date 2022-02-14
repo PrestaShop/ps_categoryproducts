@@ -236,7 +236,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
                 // Need variables only if this template isn't cached
                 if (!$this->isCached($this->templateFile, $params['cache_id'])) {
                     if (!empty($params['id_category'])) {
-                        $category = new Category($params['id_category']);
+                        $category = new Category((int) $params['id_category']);
                     }
 
                     if (empty($category) || !Validate::isLoadedObject($category) || !$category->active) {
