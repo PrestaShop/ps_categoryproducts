@@ -1,0 +1,6 @@
+includes:
+	- %currentWorkingDirectory%/tests/phpstan/phpstan.neon
+
+parameters:
+  ignoreErrors:
+    - '#Parameter \#1 \$idCategory of class Category constructor expects null, int given.#'
