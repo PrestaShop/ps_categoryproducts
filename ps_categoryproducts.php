@@ -48,7 +48,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $this->name = 'ps_categoryproducts';
         $this->tab = 'pricing_promotion';
         $this->author = 'PrestaShop';
-        $this->version = '1.0.6';
+        $this->version = '1.0.7';
 
         $this->bootstrap = true;
         parent::__construct();
