@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@prestashop-core/ui-testing": "^0.0.11"
+  }
+}
