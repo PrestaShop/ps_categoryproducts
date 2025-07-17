@@ -314,18 +314,24 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             );
         }
 
+        // Now, we can present the products for the template.
         $productsForTemplate = [];
 
         $presentationSettings->showPrices = $showPrice;
 
         $products = $result->getProducts();
 
+        // Assemble & present in bulk or separately, depending on core version
+        $assembleInBulk = method_exists($assembler, 'assembleProducts');
+        if ($assembleInBulk) {
+            $products = $assembler->assembleProducts($products);
+        }
         foreach ($products as $rawProduct) {
             // Not duplicate current product
             if ($rawProduct['id_product'] !== $idProduct && count($productsForTemplate) < (int) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS')) {
                 $productsForTemplate[] = $presenter->present(
                     $presentationSettings,
-                    $assembler->assembleProduct($rawProduct),
+                    ($assembleInBulk ? $rawProduct : $assembler->assembleProduct($rawProduct)),
                     $this->context->language
                 );
             }
