@@ -264,7 +264,8 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
     private function getCategoryProducts($idProduct, $idCategory)
     {
         $category = new Category($idCategory);
-        $showPrice = (bool) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRICE');
+        $showPrice = (bool) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRICE')
+            && (bool) Group::getCurrent()->show_prices;
 
         $searchProvider = new CategoryProductSearchProvider(
             $this->getTranslator(),
