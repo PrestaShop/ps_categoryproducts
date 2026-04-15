@@ -48,7 +48,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $this->name = 'ps_categoryproducts';
         $this->tab = 'pricing_promotion';
         $this->author = 'PrestaShop';
-        $this->version = '1.0.8';
+        $this->version = '2.0.0';
 
         $this->bootstrap = true;
         parent::__construct();
@@ -66,9 +66,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
             && Configuration::updateValue('CATEGORYPRODUCTS_DISPLAY_PRICE', 1)
             && Configuration::updateValue('CATEGORYPRODUCTS_DISPLAY_PRODUCTS', 16)
             && $this->registerHook('displayFooterProduct')
-            && $this->registerHook('actionProductAdd')
-            && $this->registerHook('actionProductUpdate')
-            && $this->registerHook('actionProductDelete')
         ;
     }
 
@@ -97,7 +94,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
                 Configuration::updateValue('CATEGORYPRODUCTS_DISPLAY_PRICE', Tools::getValue('CATEGORYPRODUCTS_DISPLAY_PRICE'));
                 Configuration::updateValue('CATEGORYPRODUCTS_DISPLAY_PRODUCTS', (int) Tools::getValue('CATEGORYPRODUCTS_DISPLAY_PRODUCTS'));
 
-                $this->_clearCache($this->templateFile);
                 $this->html .= $this->displayConfirmation($this->trans('The settings have been updated.', [], 'Admin.Notifications.Success'));
             }
         }
@@ -105,34 +101,6 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $this->html .= $this->renderForm();
 
         return $this->html;
-    }
-
-    public function hookAddProduct($params)
-    {
-        return $this->clearCache($params);
-    }
-
-    public function hookUpdateProduct($params)
-    {
-        return $this->clearCache($params);
-    }
-
-    public function hookDeleteProduct($params)
-    {
-        return $this->clearCache($params);
-    }
-
-    private function clearCache($params)
-    {
-        $params = $this->getInformationFromConfiguration($params);
-
-        if ($params) {
-            $this->_clearCache($this->templateFile, $params['cache_id']);
-        } else {
-            $this->_clearCache($this->templateFile);
-        }
-
-        return;
     }
 
     public function renderForm()
@@ -232,29 +200,23 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
 
         if ($params) {
             if ((int) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRODUCTS') > 0) {
-                // Need variables only if this template isn't cached
-                if (!$this->isCached($this->templateFile, $params['cache_id'])) {
-                    if (!empty($params['id_category'])) {
-                        $category = new Category((int) $params['id_category']);
-                    }
-
-                    if (empty($category) || !Validate::isLoadedObject($category) || !$category->active) {
-                        return false;
-                    }
-
-                    $variables = $this->getWidgetVariables($hookName, $configuration);
-
-                    if (empty($variables)) {
-                        return false;
-                    }
-
-                    $this->smarty->assign($variables);
+                if (!empty($params['id_category'])) {
+                    $category = new Category((int) $params['id_category']);
                 }
 
-                return $this->fetch(
-                    $this->templateFile,
-                    $params['cache_id']
-                );
+                if (empty($category) || !Validate::isLoadedObject($category) || !$category->active) {
+                    return false;
+                }
+
+                $variables = $this->getWidgetVariables($hookName, $configuration);
+
+                if (empty($variables)) {
+                    return false;
+                }
+
+                $this->smarty->assign($variables);
+
+                return $this->fetch($this->templateFile);
             }
         }
 
@@ -264,7 +226,9 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
     private function getCategoryProducts($idProduct, $idCategory)
     {
         $category = new Category($idCategory);
-        $showPrice = (bool) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRICE');
+
+        // Show product prices if enabled in the module AND the current group has them shown
+        $showPrice = (bool) Configuration::get('CATEGORYPRODUCTS_DISPLAY_PRICE') && (bool) Configuration::showPrices();
 
         $searchProvider = new CategoryProductSearchProvider(
             $this->getTranslator(),
@@ -356,12 +320,9 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
         $id_category = (isset($configuration['category']->id) ? (int) $configuration['category']->id : (int) $product['id_category_default']);
 
         if (!empty($id_product) && !empty($id_category)) {
-            $cache_id = 'ps_categoryproducts|' . $id_product . '|' . $id_category;
-
             return [
                 'id_product' => $id_product,
                 'id_category' => $id_category,
-                'cache_id' => $this->getCacheId($cache_id),
             ];
         }
 
