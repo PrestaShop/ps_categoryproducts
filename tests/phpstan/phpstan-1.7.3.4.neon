@@ -1,9 +1,0 @@
-includes:
-	- %currentWorkingDirectory%/tests/phpstan/phpstan.neon
-
-parameters:
-  ignoreErrors:
-    - '#Call to method assign\(\) on an unknown class Smarty_Data#'
-    - '#Call to method present\(\) on an unknown class PrestaShop\\PrestaShop\\Adapter\\Presenter\\Product\\ProductListingPresenter.#'
-    - '#Instantiated class PrestaShop\\PrestaShop\\Adapter\\Presenter\\Product\\ProductListingPresenter not found.#'
-    - '#Parameter \#1 \$idCategory of class Category constructor expects null, int given.#'
