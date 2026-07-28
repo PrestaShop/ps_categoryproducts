@@ -55,7 +55,7 @@ class Ps_Categoryproducts extends Module implements WidgetInterface
 
         $this->displayName = $this->trans('Products in the same category', [], 'Modules.Categoryproducts.Admin');
         $this->description = $this->trans('Add a block on every product page that displays items from the same category.', [], 'Modules.Categoryproducts.Admin');
-        $this->ps_versions_compliancy = ['min' => '1.7.0.0', 'max' => _PS_VERSION_];
+        $this->ps_versions_compliancy = ['min' => '8.2.0', 'max' => _PS_VERSION_];
 
         $this->templateFile = 'module:ps_categoryproducts/views/templates/hook/ps_categoryproducts.tpl';
     }
